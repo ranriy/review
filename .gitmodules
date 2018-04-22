@@ -1,0 +1,6 @@
+[submodule "client"]
+	path = client
+	url = https://github.com/ranriy/mean.git
+[submodule "mean"]
+	path = mean
+	url = https://github.com/ranriy/mean.git

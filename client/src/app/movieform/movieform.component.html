@@ -1,0 +1,33 @@
+<div class ="wrapper">
+<h3> Submit a movie and your review </h3>
+
+<div class = errors>
+<p *ngIf="errors.title">{{errors.title.message}}</p>
+<p *ngIf="errors.reviewer">{{errors.reviewer.message}}</p>
+<p *ngIf="errors.reviews">{{errors.reviews.message}}</p>
+</div>
+
+<form (submit) = "addMovie($event)" #form="ngForm">
+	<p>Movie Title <input type="text" name="newMovie.title" [(ngModel)]="newMovie.title" #title="ngModel" required minlength="3">
+	<small class = "errors" [hidden]="title.valid || (title.untouched && !form.submitted)">Movie title is required (Minimum length of 3 characters)
+	</small></p>
+
+    <p>Your name <input type="text" name="newReview.reviewer" [(ngModel)]="newReview.reviewer" #name="ngModel" required minlength="3" />
+    <small class = "errors" [hidden]="name.valid || (name.untouched && !form.submitted)">Name is required (Minimum length of 3 characters)</small></p>
+
+    <p>Stars
+    <select name="newReview.stars" [(ngModel)]="newReview.stars">
+	  <option value="1">1</option>
+	  <option value="2">2</option>
+	  <option value="3">3</option>
+	  <option value="4">4</option>
+	  <option value="5">5</option>
+	</select></p>
+
+    <p>Your Review <input type="textarea" name="newReview.reviews" [(ngModel)]="newReview.reviews" #review="ngModel" required minlength="3" />
+    <small class = "errors" [hidden]="review.valid || (review.untouched && !form.submitted)">Review is required (Minimum length of 3 characters)</small></p>
+
+    <p><button [disabled]="form.invalid" type="submit">Create</button>
+    <button [routerLink] = "['/movies']">Cancel</button></p>
+</form>
+</div>
